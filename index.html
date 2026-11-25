@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#241735">
+  <script>if(!Promise.withResolvers){Promise.withResolvers=function(){let resolve,reject;const promise=new Promise((ok,fail)=>{resolve=ok;reject=fail});return{promise,resolve,reject}}}</script>
+  <title>آزمون هوشمند زیست هری پاتر</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="analysis.css?v=14">
+</head>
+<body>
+  <section class="entry-screen" id="entryScreen" aria-labelledby="entryTitle">
+    <div class="entry-orb entry-orb-one"></div><div class="entry-orb entry-orb-two"></div>
+    <div class="entry-card">
+      <span class="entry-mark">ϟ</span>
+      <span class="eyebrow">همراه هوشمند کنکور</span>
+      <h1 id="entryTitle">آزمون زیست هری پاتر</h1>
+      <p>۴۲۱۰ تست طبقه‌بندی‌شده، تحلیل مبحثی و آزمون‌های شخصی‌سازی‌شده</p>
+      <button class="primary entry-button" id="enterAppBtn" type="button">ورود به برنامه</button>
+      <small>ساخته شده توسط MaDDi</small>
+    </div>
+  </section>
+  <header class="appbar">
+    <button class="icon-btn" id="homeBtn" title="صفحه اصلی" aria-label="صفحه اصلی">⌂</button>
+    <div class="brand"><span class="brand-mark">ϟ</span><div><strong>آزمون زیست هری پاتر</strong><small>۴۲۱۰ سؤال از خود کتاب</small></div></div>
+    <div class="app-actions">
+      <button class="ghost" id="installBtn" hidden>نصب برنامه</button>
+      <button class="icon-btn" id="settingsBtn" title="تنظیمات" aria-label="تنظیمات">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="setupView" class="view active">
+      <div class="hero">
+        <div><span class="eyebrow">نسخهٔ کامل و آفلاین</span><h1>آزمون را همان‌طور که می‌خواهی بساز.</h1><p>سؤال‌ها مستقیماً از صفحهٔ کتاب نمایش داده می‌شوند؛ برنامه نتیجه، زمان و نقاط ضعف تو را نگه می‌دارد.</p></div>
+        <div class="hero-stats"><div><b id="allAttempts">۰</b><span>پاسخ ثبت‌شده</span></div><div><b id="allAccuracy">۰٪</b><span>دقت کلی</span></div><div><b id="markedCount">۰</b><span>نشان‌دار</span></div></div>
+      </div>
+
+      <nav class="home-paths" aria-label="مسیرهای اصلی">
+        <button type="button" data-scroll-to="quickQuizTitle"><b>⚡ آزمون سریع</b><span>شروع با یک لمس</span></button>
+        <button type="button" data-scroll-to="builderForm"><b>✦ آزمون دلخواه</b><span>انتخاب پایه، فصل و سؤال</span></button>
+        <button type="button" id="resumeSessionBtn" disabled><b>↻ ادامهٔ آزمون</b><span id="resumeSessionText">آزمون نیمه‌تمامی وجود ندارد</span></button>
+      </nav>
+
+      <section class="quick-quiz" aria-labelledby="quickQuizTitle">
+        <div class="quick-quiz-copy"><span class="quick-icon">⚡</span><div><span class="eyebrow">یک لمس تا شروع</span><h2 id="quickQuizTitle">آزمون سریع</h2><p>تمرینی و تصادفی از کل کتاب؛ فقط تعداد سؤال را انتخاب کن.</p></div></div>
+        <div class="quick-counts" aria-label="انتخاب تعداد سؤال آزمون سریع">
+          <button type="button" data-quick-count="10"><b>۱۰</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="15"><b>۱۵</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="25"><b>۲۵</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="30"><b>۳۰</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="35"><b>۳۵</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="40"><b>۴۰</b><span>سؤال</span></button>
+          <button type="button" data-quick-count="45"><b>۴۵</b><span>سؤال</span></button>
+        </div>
+        <div class="timed-quiz">
+          <div><span class="eyebrow">شبیه‌سازی جلسهٔ واقعی</span><h3>آزمون زمان‌دار</h3><p>تعداد سؤال و زمان کل را خودت تعیین کن؛ با پایان زمان، کارنامه خودکار نمایش داده می‌شود.</p></div>
+          <label>تعداد سؤال<select id="timedCount"><option value="10">۱۰ سؤال</option><option value="15">۱۵ سؤال</option><option value="25">۲۵ سؤال</option><option value="30" selected>۳۰ سؤال</option><option value="35">۳۵ سؤال</option><option value="40">۴۰ سؤال</option><option value="45">۴۵ سؤال</option></select></label>
+          <label>زمان کل (دقیقه)<input id="timedMinutes" type="number" min="1" max="300" value="30" inputmode="numeric"></label>
+          <button class="primary" id="startTimedBtn" type="button">شروع آزمون زمان‌دار</button>
+        </div>
+      </section>
+
+      <div class="setup-grid">
+        <form class="card builder" id="builderForm">
+          <div class="card-title"><div><span class="eyebrow">آزمون‌ساز</span><h2>جلسهٔ جدید</h2></div><span class="step-badge">۱</span></div>
+          <div class="wizard-steps" aria-label="مراحل آزمون‌ساز"><button type="button" data-builder-step="1" class="active">۱. محدوده</button><button type="button" data-builder-step="2">۲. سؤال‌ها</button><button type="button" data-builder-step="3">۳. شروع</button></div>
+          <section class="builder-stage active" data-stage="1">
+            <label>حالت پاسخ‌گویی<select id="mode"><option value="practice">تمرینی - نمایش فوری پاسخ</option><option value="exam">آزمونی - نمایش پاسخ در پایان</option><option value="review">مرور - تمرکز بر ضعف‌ها</option></select></label>
+            <label>محدوده<select id="scope"><option value="all">کل کتاب</option><option value="grade-دهم">پایه دهم</option><option value="grade-یازدهم">پایه یازدهم</option><option value="grade-دوازدهم">پایه دوازدهم</option></select></label>
+            <label id="chapterWrap">فصل<select id="chapter"><option value="all">همهٔ فصل‌های محدوده</option></select></label>
+            <button class="primary wizard-next" type="button" data-next-step="2">مرحلهٔ بعد</button>
+          </section>
+          <section class="builder-stage" data-stage="2" hidden>
+            <label>روش انتخاب سؤال<select id="selectionMode"><option value="random">تعداد مشخص از محدوده</option><option value="range">بازهٔ شماره سؤال</option><option value="exact">شماره‌های دلخواه</option></select></label>
+            <div class="two" id="randomFields"><label>تعداد سؤال<input id="count" type="number" min="1" max="4210" value="20"></label><label>منبع سؤال<select id="source"><option value="all">همه</option><option value="wrong">فقط غلط‌ها</option><option value="unanswered">پاسخ‌نداده‌ها</option><option value="marked">نشان‌دارها</option><option value="hard">سؤال‌های دشوار</option><option value="unseen">مشاهده‌نشده‌ها</option></select></label></div>
+            <div class="two" id="rangeFields" hidden><label>از سؤال<input id="questionFrom" type="number" min="1" max="4210" value="1"></label><label>تا سؤال<input id="questionTo" type="number" min="1" max="4210" value="20"></label></div>
+            <label id="exactFields" hidden>شماره‌های دلخواه<textarea id="exactQuestions" rows="3" placeholder="مثال: ۳۰۰، ۳۰۵-۳۱۲، ۴۰۰"></textarea><small>شماره‌ها را با ویرگول جدا کن؛ نوشتن بازه با خط تیره هم ممکن است.</small></label>
+            <label class="check"><input id="shuffle" type="checkbox" checked><span>چینش تصادفی سؤال‌ها</span></label>
+            <div class="wizard-actions"><button class="ghost" type="button" data-next-step="1">قبل</button><button class="primary" type="button" data-next-step="3">بررسی و شروع</button></div>
+          </section>
+          <section class="builder-stage" data-stage="3" hidden>
+            <div class="builder-summary" id="builderSummary"></div>
+            <button class="primary large" id="startBtn" type="submit" disabled>در حال آماده‌سازی برنامه…</button>
+            <button class="ghost" type="button" data-next-step="2">ویرایش انتخاب‌ها</button>
+          </section>
+          <p class="form-note" id="poolNote">در حال خواندن اطلاعات سؤال‌ها…</p>
+          <div class="boot-notice" id="bootNotice" hidden><b>برنامه کامل بارگذاری نشد.</b><span id="bootMessage">لطفاً برنامه را با فایل «اجرای-آزمون.cmd» باز کنید.</span></div>
+        </form>
+
+        <section class="card analytics">
+          <div class="card-title"><div><span class="eyebrow">تحلیل عملکرد</span><h2>نقاط قوت و ضعف</h2></div><span class="step-badge">۲</span></div>
+          <div class="question-search"><input id="questionSearch" type="search" placeholder="جست‌وجوی شماره، مبحث یا زیرمبحث"><select id="statusFilter"><option value="all">همهٔ وضعیت‌ها</option><option value="correct">درست</option><option value="wrong">غلط</option><option value="unanswered">نزده</option><option value="marked">نشان‌دار</option><option value="hard">دشوار</option><option value="unseen">مشاهده‌نشده</option></select></div>
+          <div id="searchResults" class="search-results" hidden></div>
+          <div id="gradeCatalog" class="grade-catalog" aria-label="فصل‌های طبقه‌بندی‌شده بر اساس پایه"></div>
+          <section class="question-map-panel"><div class="map-head"><div><h3>نقشهٔ همهٔ سؤال‌ها</h3><p>هر فصل را باز کن و وضعیت تک‌تک شماره‌ها را ببین یا برای آزمون انتخاب کن.</p></div><button class="ghost" id="clearQuestionSelection" type="button">پاک‌کردن انتخاب‌ها</button></div><div id="questionAtlas" class="question-atlas"></div></section>
+          <div id="weakMessage" class="insight">هنوز داده‌ای ثبت نشده است. یک آزمون کوتاه شروع کن.</div>
+          <div id="chapterAnalytics" class="chapter-bars"></div>
+          <div class="data-actions"><button class="ghost" id="exportBtn">خروجی پیشرفت</button><label class="ghost file-label">بازیابی فایل<input id="importInput" type="file" accept="application/json"></label></div>
+        </section>
+      </div>
+      <div class="dashboard-grid">
+        <section class="card daily-card"><div class="card-title"><div><span class="eyebrow">مرور روزانه</span><h2>پیشنهاد امروز</h2></div><span>☀</span></div><p id="dailyMessage">بر اساس عملکردت یک تمرین کوتاه آماده می‌شود.</p><button class="primary" id="dailyReviewBtn">شروع مرور روزانه</button></section>
+        <section class="card goal-card"><div class="card-title"><div><span class="eyebrow">هدف مطالعه</span><h2>هدف هفتگی</h2></div><b id="goalProgress">۰٪</b></div><label>تعداد سؤال هدف در هفته<input id="weeklyGoal" type="number" min="10" max="2000" step="10" value="100"></label><div class="meter"><i id="goalMeter"></i></div><p id="goalText">این هفته هنوز سؤالی پاسخ نداده‌ای.</p></section>
+        <section class="card history-card"><div class="card-title"><div><span class="eyebrow">سوابق</span><h2>تاریخچهٔ آزمون‌ها</h2></div></div><div id="historyList" class="history-list"></div></section>
+      </div>
+    </section>
+
+    <section id="quizView" class="view">
+      <div class="quiz-top">
+        <div><span id="sessionMode" class="eyebrow"></span><h2 id="questionTitle">سؤال</h2><p id="questionMeta"></p></div>
+        <div class="timers"><span id="limitTimerWrap" hidden>باقی‌مانده <b id="limitTimer">۰۰:۰۰</b></span><button class="timer-toggle" id="toggleTimerBtn" type="button" hidden aria-pressed="false">پنهان‌کردن زمان</button><span>کل <b id="totalTimer">۰۰:۰۰</b></span><span>این سؤال <b id="questionTimer">۰۰:۰۰</b></span></div>
+      </div>
+      <div class="session-progress"><div id="sessionBar"></div></div>
+      <div class="quiz-layout">
+        <section class="question-card">
+          <div class="canvas-toolbar"><span id="renderStatus">در حال بارگذاری کتاب…</span><div><button class="mini retry-render" id="renderRetry" type="button" hidden>تلاش دوباره</button><button class="mini" id="zoomOut" aria-label="کوچک‌نمایی">−</button><button class="mini" id="zoomIn" aria-label="بزرگ‌نمایی">+</button><a id="openPdf" class="mini link" target="_blank" rel="noopener">PDF</a></div></div>
+          <div class="canvas-wrap"><canvas id="questionCanvas"></canvas></div>
+        </section>
+        <aside class="answer-card">
+          <div class="answer-head"><div><span class="eyebrow">پاسخ‌برگ</span><strong>گزینهٔ درست را انتخاب کن</strong></div><span class="answer-head-icon">✓</span></div>
+          <div class="live-stats" id="liveStats"><span><b id="liveAnswered">۰</b> پاسخ‌داده</span><span><b id="liveBlank">۰</b> نزده</span><span><b id="liveMarked">۰</b> نشان‌دار</span></div>
+          <button id="markBtn" class="mark" aria-pressed="false">☆ نشان‌دار کردن</button>
+          <div id="feedback" class="feedback">پاسخ خود را انتخاب کن.</div>
+          <div class="choice-grid" id="choiceGrid"><button data-choice="1">گزینهٔ ۱</button><button data-choice="2">گزینهٔ ۲</button><button data-choice="3">گزینهٔ ۳</button><button data-choice="4">گزینهٔ ۴</button></div>
+          <button class="ghost clear-answer" id="clearAnswerBtn" type="button" disabled>پاک‌کردن پاسخ و بازگشت به «نزده»</button>
+          <div class="nav-actions"><button class="ghost" id="prevBtn">قبلی</button><button class="primary" id="nextBtn">بعدی</button></div>
+          <button class="danger-link" id="finishBtn">پایان و مشاهدهٔ کارنامه</button>
+          <details class="session-map-wrap" id="sessionMapWrap"><summary>نقشهٔ سؤال‌های آزمون</summary><div class="session-map" id="sessionMap"></div><div class="legend"><span><i class="correct"></i>درست</span><span><i class="wrong"></i>غلط</span><span><i class="blank"></i>نزده</span><span>★ نشان‌دار</span></div></details>
+          <div class="jump-row"><input id="jumpInput" type="number" min="1" placeholder="شماره در آزمون"><button class="ghost" id="jumpBtn">برو</button></div>
+          <p class="shortcuts">میانبر: ۱ تا ۴ پاسخ · Enter یا ← بعدی · → قبلی · B نشان‌دار · M نقشه</p>
+        </aside>
+      </div>
+      <details id="solutionPanel" class="solution-panel" hidden open>
+        <summary><span id="solutionState" class="solution-state">تحلیل پاسخ</span><div><b id="solutionHeading">توضیح پاسخ</b><small id="solutionMeta"></small></div><span class="solution-chevron">⌄</span></summary>
+        <div class="solution-body"><div class="correct-answer-box"><span>پاسخ صحیح</span><b id="solutionCorrect">—</b></div><p id="solutionText"></p><div id="solutionTags" class="analysis-tags"></div></div>
+      </details>
+    </section>
+
+    <section id="reportView" class="view">
+      <div class="report-head"><div><span class="eyebrow">کارنامهٔ آزمون</span><h1 id="reportTitle">نتیجه</h1><p id="reportSub"></p></div><div class="score-ring" id="scoreRing"><b id="reportPercent">۰٪</b><span>درصد</span></div></div>
+      <div class="report-stats"><div><b id="rCorrect">۰</b><span>درست</span></div><div><b id="rWrong">۰</b><span>غلط</span></div><div><b id="rBlank">۰</b><span>نزده</span></div><div><b id="rAverage">۰ ثانیه</b><span>میانگین زمان</span></div></div>
+      <details class="card report-detail" open><summary>تحلیل مباحث و اولویت مرور</summary><div id="priorityMessage" class="insight"></div><div id="reportTopics" class="topic-analysis"></div></details>
+      <div class="report-grid"><details class="card report-detail"><summary>عملکرد فصل‌ها</summary><div id="reportChapters" class="chapter-bars"></div></details><details class="card report-detail"><summary>مرور سؤال‌ها</summary><div id="reviewGrid" class="review-grid"></div><div class="legend"><span><i class="correct"></i>درست</span><span><i class="wrong"></i>غلط</span><span><i class="blank"></i>نزده</span></div></details></div>
+      <details class="card report-detail"><summary>تحلیل سؤال‌های نیازمند مرور</summary><div id="questionInsights" class="question-insights"></div></details>
+      <div class="report-actions"><button class="primary" id="reviewWrongBtn">مرور غلط‌ها و نزده‌ها</button><button class="ghost" id="similarQuizBtn">آزمون مشابه</button><button class="ghost" id="newSessionBtn">آزمون جدید</button></div>
+    </section>
+  </main>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="settings-card"><div class="card-title"><h2>تنظیمات</h2><button class="icon-btn" value="cancel" aria-label="بستن">×</button></div>
+      <label>پوسته<select id="themeSetting"><option value="dark">شب</option><option value="light">روشن</option><option value="paper">کاغذی</option><option value="contrast">پرکنتراست</option></select></label>
+      <label>اندازه رابط<select id="fontSetting"><option value="90">کوچک</option><option value="100">معمولی</option><option value="115">درشت</option></select></label>
+      <label>بزرگ‌نمایی سؤال<input id="zoomSetting" type="range" min="80" max="160" step="10"></label>
+      <label class="check"><input id="soundSetting" type="checkbox"><span>صدای پاسخ درست و غلط</span></label>
+      <label class="check"><input id="autoNextSetting" type="checkbox"><span>رفتن خودکار به سؤال بعدی</span></label>
+      <label class="check"><input id="instantSetting" type="checkbox"><span>نمایش فوری جواب در حالت تمرینی</span></label>
+      <label class="check"><input id="focusSetting" type="checkbox"><span>حالت تمرکز هنگام آزمون</span></label>
+      <button class="primary" id="saveSettings" type="button">ذخیره تنظیمات</button>
+      <div class="reset-zone"><div><b>بازنشانی کامل برنامه</b><p>همهٔ پاسخ‌ها، کارنامه‌ها، نشان‌دارها و تنظیمات ذخیره‌شده پاک می‌شوند.</p></div><button class="danger-link" id="resetAppBtn" type="button">پاک‌کردن همهٔ داده‌ها</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="onboardingDialog"><form method="dialog" class="settings-card onboarding-card"><span class="quick-icon">ϟ</span><h2>به آزمون هوشمند خوش آمدی</h2><div class="onboarding-pages"><p>از «آزمون سریع» فوری شروع کن یا با آزمون‌ساز، پایه و فصل دلخواهت را انتخاب کن.</p><p>داخل آزمون، نقشهٔ سؤال‌ها و نشان‌گذاری کمک می‌کند چیزی از قلم نیفتد.</p><p>کارنامه، مباحث ضعیف و مرور روزانه کاملاً آفلاین ذخیره می‌شوند.</p></div><button class="primary" id="finishOnboarding" value="default">شروع کنیم</button></form></dialog>
+
+  <nav class="mobile-nav" aria-label="ناوبری موبایل"><button data-mobile-action="home">⌂<span>خانه</span></button><button data-scroll-to="quickQuizTitle">⚡<span>سریع</span></button><button data-scroll-to="builderForm">✦<span>دلخواه</span></button><button data-mobile-action="progress">◉<span>پیشرفت</span></button><button data-mobile-action="settings">⚙<span>تنظیمات</span></button></nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    window.__quizReady=false;
+    window.__showBootError=function(message){if(window.__quizReady)return;var n=document.getElementById('bootNotice'),m=document.getElementById('bootMessage'),b=document.getElementById('startBtn');if(n)n.hidden=false;if(m)m.textContent=message||'لطفاً برنامه را با فایل «اجرای-آزمون.cmd» باز کنید.';if(b){b.disabled=true;b.textContent='برنامه آماده نشد'}};
+    window.addEventListener('error',function(event){if(!window.__quizReady&&event.filename)window.__showBootError('بخشی از برنامه بارگذاری نشد. ZIP را کامل استخراج کنید و دوباره اجرا کنید.')});
+    if(location.protocol==='file:')window.__showBootError('این صفحه مستقیم باز شده است. پوشه را از ZIP استخراج کنید و سپس فایل «اجرای-آزمون.cmd» را اجرا کنید.');
+    window.__quizBootTimer=setTimeout(function(){window.__showBootError('بارگذاری برنامه طولانی شد. صفحه را تازه‌سازی کنید؛ اگر حل نشد «اجرای-آزمون.cmd» را دوباره اجرا کنید.')},8000);
+  </script>
+  <script src="quiz-data.js?v=14" onerror="window.__showBootError('فایل اطلاعات سؤال‌ها پیدا نشد؛ ZIP را کامل استخراج کنید.')"></script>
+  <script src="chapters.js?v=14" onerror="window.__showBootError('فایل فصل‌ها پیدا نشد؛ ZIP را کامل استخراج کنید.')"></script>
+  <script src="question-analysis.js?v=14" onerror="window.__showBootError('فایل تحلیل سؤال‌ها پیدا نشد؛ بستهٔ برنامه را دوباره دریافت کنید.')"></script>
+  <script type="module" src="app.mjs?v=14"></script>
+</body>
+</html>
